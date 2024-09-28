@@ -68,7 +68,7 @@ const Feed = () => {
       }
     };
 
-    fetchPosts(); 
+    setTimeout(fetchPosts, 500); 
   }, []); 
 
   return (
