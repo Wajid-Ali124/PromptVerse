@@ -13,9 +13,13 @@ const UserProfile = ({params}) => {
 
     useEffect(()=>{
         const fetchPosts = async ()=>{
-          const response = await fetch(`/api/users/${params.id}/posts`);
-          const data = await response.json();
-          setPosts(data)
+          try {
+            const response = await fetch(`/api/users/${params.id}/posts`);
+            const data = await response.json();
+            setPosts(data)  
+          } catch (error) {
+            console.log(error)
+          }
         }
         
         if(params.id)

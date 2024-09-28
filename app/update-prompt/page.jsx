@@ -18,6 +18,8 @@ const EditPrompt = () => {
 
     useEffect(()=>{
         const getPromptDetails = async ()=>{
+
+          try {
             const response = await fetch(`/api/prompt/${promptId}`)
             const data = await response.json();
 
@@ -25,6 +27,10 @@ const EditPrompt = () => {
                 prompt: data.prompt,
                 tag:data.tag,
             })
+          } catch (error) {
+            console.log(error)
+          }
+            
         }
 
         if(promptId)

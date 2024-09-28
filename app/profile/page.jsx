@@ -14,9 +14,14 @@ const MyProfile = () => {
 
     useEffect(()=>{
         const fetchPosts = async ()=>{
+          try {
           const response = await fetch(`/api/users/${session?.user.id}/posts`);
           const data = await response.json();
-          setPosts(data)
+          setPosts(data)  
+          } catch (error) {
+            console.log(error)  
+          }
+          
         }
         
         if(session?.user.id)
