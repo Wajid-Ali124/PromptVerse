@@ -21,7 +21,7 @@ const Feed = () => {
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
-  const [error, setError] = useState(false); // Track error state
+  const [error, setError] = useState(false); 
 
   const handleSearchChange = (e) => {
     e.preventDefault();
@@ -56,20 +56,20 @@ const Feed = () => {
       try {
         const response = await fetch("/api/prompt");
         if (!response.ok) {
-          throw new Error("Failed to fetch data"); // Handle non-200 responses
+          throw new Error("Failed to fetch data"); 
         }
         const data = await response.json();
         setPosts(data);
-        setError(false); // Clear error if successful
+        setError(false); 
       } catch (err) {
         console.error("Fetch error:", err);
         setError(true);
-        setTimeout(fetchPosts, 3000); // Retry after 3 seconds
+        setTimeout(fetchPosts, 1000); 
       }
     };
 
-    fetchPosts(); // Initial fetch
-  }, []); // Empty dependency array ensures this runs only once
+    fetchPosts(); 
+  }, []); 
 
   return (
     <section className="feed">
@@ -84,7 +84,7 @@ const Feed = () => {
         />
       </form>
 
-      {error && <p className="error-message">Failed to load posts, retrying...</p>} {/* Optional error message */}
+      {error && <p className="error-message">Failed to load posts, retrying... <br />Please try reloading page</p>} {/* Optional error message */}
 
       <PromptCardList data={searchText ? filteredPosts : posts} handleTagClick={handleTagClick} />
     </section>
