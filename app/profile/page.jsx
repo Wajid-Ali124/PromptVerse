@@ -13,6 +13,13 @@ const MyProfile = () => {
     const router = useRouter();
 
     useEffect(()=>{
+        if(!session?.user.id)
+        {
+          router.push('/')
+        }
+    },[session])
+
+    useEffect(()=>{
         const fetchPosts = async ()=>{
           try {
           const response = await fetch(`/api/users/${session?.user.id}/posts`);
